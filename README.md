@@ -20,7 +20,20 @@ There are currently several ways to use these:
 
 ## Libraries
 
+
+### Issues
+
+- The modern glibc, musl and uclibc-ng files measured very few unique matches on a Mirai-style IoT corpus (the Aboriginal files carried about 93% of matches). They are published for coverage of newer toolchains.
+- The Aboriginal files were built without the crt*.o startup objects (backfill scripts exist in the generator repo but were not applied).
+- About 32 files (the glibc, musl and uclibc-ng Bootlin sets plus el7) were built with the oversized common-symbols list, so they match about 9% worse than they could. The Aboriginal files were built after that fix.
+- sigmoid and qt5 are ungated: qt5 because the static subpackage ships only support libraries.
+
 ### Sources
+
+- glibc, musl, uclibc-ng: Bootlin toolchains, stable-2026.08-1 (toolchains.bootlin.com)
+- uclibc-aboriginal, musl-aboriginal: period cross-compilers from github.com/R00tS3c/DDOS-RootSec, pinned at commit 41e5009c8da9bd9fff94ffef34db218e51a55560
+- el6-x86.*, el7-x86.*, qt5-el7-x86.*: CentOS vault RPMs, GPG-verified
+- Generator plans and metadata: [PLAN.md](https://github.com/BinTriage/ghidra-fid-generator/blob/iot-coverage/PLAN.md) and [PROVENANCE.md](https://github.com/BinTriage/ghidra-fid-generator/blob/iot-coverage/PROVENANCE.md)
 
 - `el{6,7}`: <http://mirror.centos.org/centos/>
 - `ubuntu`: <http://de.archive.ubuntu.com/ubuntu/pool/main/>
@@ -36,67 +49,6 @@ There are currently several ways to use these:
 ### Content
 
 The following libraries are included in the datasets:
-
-### el6.i686.fidb
-
-- `boost-static/1.41.0/28.el6.i686`
-- `glibc-static/2.12/1.212.el6.i686`
-- `lua-static/5.1.4/4.1.el6.i686`
-- `openssl-static/1.0.1e/57.el6.i686`
-- `openssl-static/1.0.1e/58.el6_10.i686`
-- `zlib-static/1.2.3/29.el6.i686`
-
-Total entries: 21612
-
-### el6.x86_64.fidb
-
-- `boost-static/1.41.0/28.el6.x86_64`
-- `glibc-static/2.12/1.212.el6.x86_64`
-- `lua-static/5.1.4/4.1.el6.x86_64`
-- `openssl-static/1.0.1e/57.el6.x86_64`
-- `openssl-static/1.0.1e/58.el6_10.x86_64`
-- `zlib-static/1.2.3/29.el6.x86_64`
-
-Total entries: 16912
-
-### el7.i686.fidb
-
-- `boost-static/1.53.0/27.el7.i686`
-- `glibc-static/2.17/260.el7_6.3.i686`
-- `glibc-static/2.17/260.el7_6.6.i686`
-- `glibc-static/2.17/260.el7.i686`
-- `glibc-static/2.17/292.el7.i686`
-- `libgo-static/4.8.5/36.el7_6.1.i686`
-- `libstdc++-static/4.8.5/36.el7.i686`
-- `lua-static/5.1.4/15.el7.i686`
-- `openssl-static/1.0.2k/16.el7_6.1.i686`
-- `openssl-static/1.0.2k/16.el7.i686`
-- `openssl-static/1.0.2k/19.el7.i686`
-- `protobuf-lite-static/2.5.0/8.el7.i686`
-- `protobuf-static/2.5.0/8.el7.i686`
-- `zlib-static/1.2.7/18.el7.i686`
-
-Total entries: 53823
-
-### el7.x86_64.fidb
-
-- `boost-static/1.53.0/27.el7.x86_64`
-- `glibc-static/2.17/260.el7_6.3.x86_64`
-- `glibc-static/2.17/260.el7_6.6.x86_64`
-- `glibc-static/2.17/260.el7.x86_64`
-- `glibc-static/2.17/292.el7.x86_64`
-- `libgo-static/4.8.5/36.el7_6.1.x86_64`
-- `libgo-static/4.8.5/36.el7.x86_64`
-- `libstdc++-static/4.8.5/36.el7.x86_64`
-- `lua-static/5.1.4/15.el7.x86_64`
-- `openssl-static/1.0.2k/16.el7_6.1.x86_64`
-- `openssl-static/1.0.2k/16.el7.x86_64`
-- `openssl-static/1.0.2k/19.el7.x86_64`
-- `protobuf-lite-static/2.5.0/8.el7.x86_64`
-- `protobuf-static/2.5.0/8.el7.x86_64`
-- `zlib-static/1.2.7/18.el7.x86_64`
-
-Total entries: 57966
 
 ### gcc-68000.BE.32.Coldfire.fidb
 
@@ -523,3 +475,18 @@ Total entries: 18557
 Total entries: 10603
 
 
+
+
+### glibc, musl and uclibc-ng (.fidb)
+
+- Bootlin stable-2026.08-1 toolchains
+- Contains multiple architectures (AARCH64, ARM, MIPS, PowerPC, RISCV, SuperH4, sparc, x86, 68000)
+
+### uclibc-aboriginal and musl-aboriginal (.fidb)
+
+- DDOS-RootSec cross-compilers
+- Contains multiple architectures
+
+### el6-x86, el7-x86, qt5-el7-x86 (.fidb)
+
+- CentOS vault RPMs, wider content replacement for old el6/el7 datasets
