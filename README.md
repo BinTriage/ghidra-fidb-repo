@@ -2,7 +2,7 @@
 
 These Function ID datasets were generated via:
 
-- <https://github.com/threatrack/ghidra-fid-generator>
+- <https://github.com/threatrack/ghidra-fid-generator> (and the [BinTriage fork](https://github.com/BinTriage/ghidra-fid-generator) used for newer databases)
 - using a manual selection of interesting libraries
 
 **Feel free to report any issues and suggest libraries (including non Linux ones) for
